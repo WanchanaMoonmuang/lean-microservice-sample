@@ -7,7 +7,7 @@
 ```node main.js```
 
 # Sample microservice #1
-Try to offline one microservice, the other one should still available
 /micro1
+Try to offline one microservice, the other one should still available
 
 ```node main.js```
