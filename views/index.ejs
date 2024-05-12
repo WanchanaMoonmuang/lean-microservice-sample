@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend</title>
+</head>
+
+<body>
+
+    <div class="header" style="background-color:#1abc9c;">
+        <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
+        <h1>Header</h1>
+        <p>My supercool header</p>
+    </div>
+
+    <div class="w3-sidebar w3-bar-block" style="width:15%" id="sidebar">
+        <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+        <div id="sidebar-element">
+        </div>
+    </div>
+
+    <div style="margin-left:15%" id="contentblock">
+        <div id="content">
+            <%= content %>
+        </div>
+    </div>
+    <script>
+        function w3_open() {
+            document.getElementById("sidebar").style.display = "block";
+        }
+
+        function w3_close() {
+            document.getElementById("sidebar").style.display = "none";
+        }
+        // const currentEndpoint = window.location.pathname;
+
+
+        fetch('/sidebar')
+            .then(response => response.json())
+            .then(data => {
+                // Update HTML with fetched data
+                const sidebarDiv = document.getElementById('sidebar-element');
+                sidebarDiv.innerHTML = `${data.sidebar}`;
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+
+
+        // fetch(`/${currentEndpoint}`)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         // Update HTML with fetched data
+        //         const contentDiv = document.getElementById('content');
+        //         contentDiv.innerHTML = `${data.content}`;
+        //     })
+        //     .catch(error => {
+        //         console.error('Error fetching data:', error);
+        //     });
+    </script>
+
+</body>
+
+</html>
